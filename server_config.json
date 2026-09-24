@@ -1,0 +1,21 @@
+{
+  "vault_password_hash": "cebb2c8988d95a24fe661196d620c9a471f9c58983495fce32a716767d3edc3a",
+  "allow_public_upload": true,
+  "allow_public_delete": false,
+  "allow_vault_upload": true,
+  "allow_vault_delete": true,
+  "shared_usb_drives": {
+    "c": {
+      "mount": "C:\\",
+      "label": "C:\\",
+      "read_only": false
+    },
+    "d": {
+      "mount": "D:\\",
+      "label": "YASH",
+      "read_only": false
+    }
+  },
+  "server_port": 5003,
+  "server_name": "Chautara Share Hub"
+}

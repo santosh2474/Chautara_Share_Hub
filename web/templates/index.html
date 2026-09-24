@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Chautara Share Hub</title>
+  <link rel="icon" type="image/jpeg" href="/static/img/chautara_logo.jpg">
+  <link rel="stylesheet" href="/static/css/style.css?v=4">
+</head>
+<body class="dark-theme">
+  <!-- Top Navigation Header -->
+  <header class="app-header">
+    <div class="header-brand">
+      <div class="brand-logo school-logo-container">
+        <img src="/static/img/chautara_logo.jpg" alt="Chautara Logo" class="brand-school-img">
+      </div>
+      <div class="brand-text">
+        <h1 id="serverNameTitle">Chautara Share Hub</h1>
+        <span class="status-badge online"><span class="pulse-dot"></span> <span id="serverIpBadge">Connecting...</span></span>
+      </div>
+    </div>
+    
+    <div class="header-actions">
+      <button id="showQrBtn" class="btn btn-icon" title="Show QR Code for other devices">
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2">
+          <rect x="3" y="3" width="7" height="7"></rect>
+          <rect x="14" y="3" width="7" height="7"></rect>
+          <rect x="14" y="14" width="7" height="7"></rect>
+          <rect x="3" y="14" width="7" height="7"></rect>
+        </svg>
+      </button>
+
+      <button id="themeToggleBtn" class="btn btn-icon" title="Toggle Dark/Light Mode">
+        <svg id="themeIconSun" class="hidden" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="12" cy="12" r="5"></circle>
+          <line x1="12" y1="1" x2="12" y2="3"></line>
+          <line x1="12" y1="21" x2="12" y2="23"></line>
+          <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+          <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+          <line x1="1" y1="12" x2="3" y2="12"></line>
+          <line x1="21" y1="12" x2="23" y2="12"></line>
+          <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+          <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+        </svg>
+        <svg id="themeIconMoon" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+        </svg>
+      </button>
+    </div>
+  </header>
+
+  <!-- Storage Drive / Location Tabs -->
+  <nav class="storage-tabs-wrapper">
+    <div class="storage-tabs" id="storageTabsList">
+      <!-- Injected by JavaScript: Public, Vault, USB drives -->
+    </div>
+  </nav>
+
+  <!-- Main Container -->
+  <main class="main-container">
+    <!-- Action and Filter Bar -->
+    <div class="control-panel">
+      <!-- Breadcrumb trail -->
+      <nav class="breadcrumbs-nav" id="breadcrumbsNav" aria-label="Breadcrumb">
+        <!-- Injected via JS -->
+      </nav>
+
+      <div class="action-buttons-group">
+        <button id="lockVaultBtn" class="btn btn-warning hidden" title="Lock Private Vault Immediately">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+            <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+          </svg>
+          <span>Lock Vault</span>
+        </button>
+
+        <button id="uploadFilesBtn" class="btn btn-primary" title="Upload files to current folder">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+            <polyline points="17 8 12 3 7 8"></polyline>
+            <line x1="12" y1="3" x2="12" y2="15"></line>
+          </svg>
+          <span>Upload</span>
+        </button>
+
+        <button id="uploadFolderBtn" class="btn btn-secondary" title="Upload a whole folder including subfolders">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path>
+            <path d="M12 11v6"></path>
+            <path d="M9 14h6"></path>
+          </svg>
+          <span class="desktop-only">Upload Folder</span>
+        </button>
+
+        <button id="newFolderBtn" class="btn btn-secondary" title="Create New Folder">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path>
+            <line x1="12" y1="11" x2="12" y2="17"></line>
+            <line x1="9" y1="14" x2="15" y2="14"></line>
+          </svg>
+          <span class="desktop-only">New Folder</span>
+        </button>
+
+        <button id="downloadZipBtn" class="btn btn-secondary" title="Download entire folder as ZIP">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="7 10 12 15 17 10"></polyline>
+            <line x1="12" y1="15" x2="12" y2="3"></line>
+            <rect x="3" y="15" width="18" height="6" rx="2"></rect>
+          </svg>
+          <span class="desktop-only">Download ZIP</span>
+        </button>
+
+        <button id="refreshBtn" class="btn btn-icon" title="Refresh">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="23 4 23 10 17 10"></polyline>
+            <polyline points="1 20 1 14 7 14"></polyline>
+            <path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"></path>
+          </svg>
+        </button>
+
+        <div class="view-toggle">
+          <button id="viewGridBtn" class="btn btn-icon active" title="Grid View">
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="3" y="3" width="7" height="7"></rect>
+              <rect x="14" y="3" width="7" height="7"></rect>
+              <rect x="14" y="14" width="7" height="7"></rect>
+              <rect x="3" y="14" width="7" height="7"></rect>
+            </svg>
+          </button>
+          <button id="viewListBtn" class="btn btn-icon" title="List View">
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
+              <line x1="8" y1="6" x2="21" y2="6"></line>
+              <line x1="8" y1="12" x2="21" y2="12"></line>
+              <line x1="8" y1="18" x2="21" y2="18"></line>
+              <line x1="3" y1="6" x2="3.01" y2="6"></line>
+              <line x1="3" y1="12" x2="3.01" y2="12"></line>
+              <line x1="3" y1="18" x2="3.01" y2="18"></line>
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Search & Filter Bar -->
+    <div class="search-filter-bar">
+      <div class="search-box">
+        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="11" cy="11" r="8"></circle>
+          <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+        </svg>
+        <input type="text" id="searchInput" placeholder="Search files in current folder...">
+        <button id="clearSearchBtn" class="btn-clear hidden">&times;</button>
+      </div>
+
+      <div class="filter-chips" id="filterChips">
+        <button class="chip active" data-filter="all">All</button>
+        <button class="chip" data-filter="image">Photos</button>
+        <button class="chip" data-filter="video">Videos</button>
+        <button class="chip" data-filter="audio">Music</button>
+        <button class="chip" data-filter="document">Docs</button>
+        <button class="chip" data-filter="archive">Archives</button>
+        <button class="chip" data-filter="code">Code</button>
+      </div>
+    </div>
+
+    <!-- Drag & Drop Upload Zone -->
+    <div class="dropzone" id="dropzone">
+      <input type="file" id="filePickerInput" multiple class="hidden">
+      <input type="file" id="photoPickerInput" multiple accept="image/*,video/*" class="hidden">
+      <input type="file" id="folderPickerInput" webkitdirectory directory class="hidden">
+      <div class="dropzone-content">
+        <div class="dropzone-icon">
+          <svg viewBox="0 0 24 24" width="38" height="38" fill="none" stroke="currentColor" stroke-width="1.8">
+            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+            <polyline points="14 2 14 8 20 8"></polyline>
+            <line x1="12" y1="18" x2="12" y2="12"></line>
+            <line x1="9" y1="15" x2="12" y2="12"></line>
+            <line x1="15" y1="15" x2="12" y2="12"></line>
+          </svg>
+        </div>
+        <div class="dropzone-text">
+          <span class="desktop-text">Drag & drop files or folders here to upload, or use the buttons below:</span>
+          <span class="mobile-text">Tap below to share files, photos, or whole folders from your device:</span>
+        </div>
+        <div class="dropzone-quick-btns">
+          <button type="button" id="quickPickAnyBtn" class="btn btn-primary btn-sm">
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+              <polyline points="17 8 12 3 7 8"></polyline>
+              <line x1="12" y1="3" x2="12" y2="15"></line>
+            </svg>
+            <span>Choose Files</span>
+          </button>
+          <button type="button" id="quickPickFolderBtn" class="btn btn-secondary btn-sm">
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path>
+              <path d="M12 11v6"></path>
+              <path d="M9 14h6"></path>
+            </svg>
+            <span>Choose Folder</span>
+          </button>
+          <button type="button" id="quickPickMediaBtn" class="btn btn-secondary btn-sm">
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+              <circle cx="8.5" cy="8.5" r="1.5"></circle>
+              <polyline points="21 15 16 10 5 21"></polyline>
+            </svg>
+            <span>Photos / Videos</span>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Active Uploads Progress Card -->
+    <div class="upload-progress-container hidden" id="uploadProgressContainer">
+      <div class="upload-header">
+        <span id="uploadStatusText">Uploading files...</span>
+        <button id="dismissUploadsBtn" class="btn-icon-sm">&times;</button>
+      </div>
+      <div class="upload-progress-bar-bg">
+        <div class="upload-progress-bar-fill" id="uploadProgressBarFill"></div>
+      </div>
+      <div class="upload-list" id="uploadList"></div>
+    </div>
+
+    <!-- File Grid / List Container -->
+    <div class="files-container grid-view" id="filesContainer">
+      <!-- Dynamic files rendered here -->
+    </div>
+
+    <!-- Empty State -->
+    <div class="empty-state hidden" id="emptyState">
+      <svg viewBox="0 0 24 24" width="64" height="64" fill="none" stroke="currentColor" stroke-width="1">
+        <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path>
+      </svg>
+      <h3>This folder is empty</h3>
+      <p>Upload files or drag and drop items here to share across devices.</p>
+    </div>
+
+    <!-- Vault Locked Screen State -->
+    <div class="vault-locked-state hidden" id="vaultLockedState">
+      <div class="vault-card">
+        <div class="vault-icon-circle">
+          <svg viewBox="0 0 24 24" width="48" height="48" fill="none" stroke="currentColor" stroke-width="1.8">
+            <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+            <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+          </svg>
+        </div>
+        <h2>Private Vault Protected</h2>
+        <p>This storage area is protected with an administrator password. Please enter the master password to access files.</p>
+        <form id="vaultUnlockForm" class="vault-form">
+          <div class="password-wrapper">
+            <input type="password" id="vaultPasswordInput" placeholder="Enter Vault Password" autocomplete="current-password" required>
+            <button type="button" id="togglePasswordVisibility" class="btn-toggle-pw" title="Show/Hide Password">
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                <circle cx="12" cy="12" r="3"></circle>
+              </svg>
+            </button>
+          </div>
+          <div id="vaultErrorMsg" class="vault-error-msg hidden"></div>
+          <button type="submit" class="btn btn-primary btn-block">Unlock Vault</button>
+        </form>
+      </div>
+    </div>
+  </main>
+
+  <!-- Media Preview Modal -->
+  <div class="modal-backdrop hidden" id="previewModal">
+    <div class="modal-dialog preview-dialog">
+      <div class="modal-header">
+        <div class="preview-title-group">
+          <span class="preview-filename" id="previewFilename">Filename</span>
+          <span class="preview-filesize" id="previewFilesize">0 KB</span>
+        </div>
+        <div class="modal-header-actions">
+          <a id="previewDownloadDirectBtn" href="#" class="btn btn-icon" title="Download File">
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+              <polyline points="7 10 12 15 17 10"></polyline>
+              <line x1="12" y1="15" x2="12" y2="3"></line>
+            </svg>
+          </a>
+          <button id="closePreviewBtn" class="btn btn-icon">&times;</button>
+        </div>
+      </div>
+      <div class="modal-body preview-body" id="previewBody">
+        <!-- Injected video, audio, image, or text preview -->
+      </div>
+    </div>
+  </div>
+
+  <!-- QR Code Share Modal -->
+  <div class="modal-backdrop hidden" id="qrModal">
+    <div class="modal-dialog qr-dialog">
+      <div class="modal-header">
+        <div style="display: flex; align-items: center; gap: 10px;">
+          <img src="/static/img/chautara_logo.jpg" style="width: 32px; height: 32px; border-radius: 6px; background: #fff; padding: 2px;" alt="Chautara Logo">
+          <h3>Connect Mobile Device</h3>
+        </div>
+        <button id="closeQrBtn" class="btn btn-icon">&times;</button>
+      </div>
+      <div class="modal-body qr-body">
+        <p>Scan with your phone or tablet camera to open <strong>Chautara Share Hub</strong> instantly on the local network.</p>
+        <div class="qr-image-wrapper">
+          <img id="qrCodeModalImg" src="" alt="LAN Server QR Code">
+        </div>
+        <div class="url-copy-box">
+          <input type="text" id="serverUrlInput" readonly>
+          <button id="copyUrlBtn" class="btn btn-primary">Copy Link</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Create Folder Modal -->
+  <div class="modal-backdrop hidden" id="newFolderModal">
+    <div class="modal-dialog small-dialog">
+      <div class="modal-header">
+        <h3>New Folder</h3>
+        <button id="closeFolderModalBtn" class="btn btn-icon">&times;</button>
+      </div>
+      <form id="newFolderForm">
+        <div class="modal-body">
+          <label for="folderNameInput">Folder Name:</label>
+          <input type="text" id="folderNameInput" placeholder="e.g. Documents, Trip Photos" required>
+        </div>
+        <div class="modal-footer">
+          <button type="button" id="cancelFolderBtn" class="btn btn-secondary">Cancel</button>
+          <button type="submit" class="btn btn-primary">Create</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Share to Drive Modal -->
+  <div class="modal-backdrop hidden" id="shareDriveModal">
+    <div class="modal-dialog small-dialog">
+      <div class="modal-header">
+        <h3>Share File to Drive</h3>
+        <button id="closeShareDriveModalBtn" class="btn btn-icon">&times;</button>
+      </div>
+      <div class="modal-body">
+        <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 12px;">
+          Send a copy of <strong id="shareDriveFilename">file</strong> to:
+        </p>
+        <label for="shareDriveSelect" style="font-size: 0.85rem; font-weight: 600;">Destination Drive:</label>
+        <select id="shareDriveSelect" style="width:100%; padding:10px; border-radius: var(--radius-sm); background: var(--bg-surface); color: var(--text-main); border: 1px solid var(--border-color); margin-top: 6px; outline: none;"></select>
+      </div>
+      <div class="modal-footer">
+        <button type="button" id="cancelShareDriveBtn" class="btn btn-secondary">Cancel</button>
+        <button type="button" id="confirmShareDriveBtn" class="btn btn-primary">Copy to Drive</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Floating Action Button for quick upload on mobile & desktop -->
+  <button id="floatingUploadBtn" class="floating-upload-btn" title="Quick Upload Files">
+    <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.5">
+      <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+      <polyline points="17 8 12 3 7 8"></polyline>
+      <line x1="12" y1="3" x2="12" y2="15"></line>
+    </svg>
+    <span class="fab-text">Share Files</span>
+  </button>
+
+  <!-- Toast Notification Alert -->
+  <div class="toast-container" id="toastContainer"></div>
+
+  <script src="/static/js/app.js?v=4"></script>
+</body>
+</html>

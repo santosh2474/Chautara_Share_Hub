@@ -1,0 +1,6 @@
+CONFIDENTIAL PRIVATE VAULT
+--------------------------
+Only authorized users who enter the master admin password can view or download
+files placed in this directory.
+
+You can change the master password anytime in the desktop GUI.
