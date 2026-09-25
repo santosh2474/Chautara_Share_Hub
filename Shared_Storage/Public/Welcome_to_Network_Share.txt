@@ -1,0 +1,11 @@
+===========================================================
+ Welcome to Antigravity Local Network File Sharing Hub!    
+===========================================================
+
+Features:
+- 100% Offline: Works within your local Wi-Fi, LAN, or Mobile Hotspot without internet.
+- Cross-Device: Open the link or scan the QR code from any iPhone, Android, tablet, or PC.
+- High-Speed Upload & Download: Drag and drop files to share them across devices.
+- Media Streaming: Watch videos and listen to music right inside your browser.
+- USB Drive Sharing: Plug in a flash drive and share it with 1-click in the desktop GUI.
+- Private Vault: Protected with the master admin password.

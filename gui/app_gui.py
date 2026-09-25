@@ -119,7 +119,30 @@ class ModernAppGUI(ctk.CTk):
             self.sidebar, text="Dark Mode", command=self.toggle_theme
         )
         self.theme_switch.select()
-        self.theme_switch.grid(row=7, column=0, padx=20, pady=20, sticky="s")
+        self.theme_switch.grid(row=7, column=0, padx=20, pady=(20, 2), sticky="s")
+
+        self.developer_label = ctk.CTkLabel(
+            self.sidebar,
+            text="Developed By: Er. Santosh Thakur\n"
+                 "Contact No.: +977-9804743283\n"
+                 "Mail Id.: info@santoshthakur.info.np",
+            font=ctk.CTkFont(size=9),
+            text_color="gray",
+            justify="center"
+        )
+        self.developer_label.grid(row=8, column=0, padx=10, pady=(0, 4), sticky="s")
+
+        self.website_label = ctk.CTkLabel(
+            self.sidebar,
+            text="www.santoshthakur.info.np",
+            font=ctk.CTkFont(size=9, underline=True),
+            text_color="#38bdf8",
+            cursor="hand2",
+            justify="center"
+        )
+        self.website_label.grid(row=9, column=0, padx=10, pady=(0, 8), sticky="s")
+        self.website_label.bind("<Button-1>",
+                                lambda e: webbrowser.open("https://www.santoshthakur.info.np"))
 
         # Main Content Container
         self.content_area = ctk.CTkFrame(self, corner_radius=12)

@@ -1,0 +1,11 @@
+===========================================================
+ Welcome to Chautara Share Hub!                            
+ Shree Chautara Secondary School - Local File Sharing Hub  
+===========================================================
+
+Features:
+- 100% Offline: Works within your school Wi-Fi, LAN, or Hotspot without internet.
+- Cross-Device: Open the link or scan the QR code from any smartphone, tablet, or PC.
+- High-Speed Upload & Download: Drag and drop files to share them across devices.
+- Drive Sharing: Plug in a USB flash drive and share it across the school network.
+- Private Vault: Admin password-protected storage for confidential school documents.

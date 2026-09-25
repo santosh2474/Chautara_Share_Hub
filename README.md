@@ -79,6 +79,18 @@ If you want to run the server in a terminal or background service without openin
 python app.py --headless --port 5000
 ```
 
+### 4. End-User (Students & Teachers) — One-File Installer
+For non-technical users, ship `setup\Chautara_Share_Hub.exe` (a 100% standalone
+installer + app). Double-clicking it opens a **normal step-by-step Windows installer**:
+- uses a responsive, resizable setup window,
+- installs to `C:\Program Files\Chautara Share Hub` (asks for the folder),
+- asks where to store Public shared files and the Private Vault,
+- creates **Desktop / Start Menu shortcuts** and an **Uninstall** shortcut,
+- registers in **Settings → Apps → Chautara Share Hub** so it can be
+  uninstalled from **Control Panel → Programs and Features**.
+
+See `setup/README.md` for the full install/uninstall guide.
+
 ---
 
 ## 🔒 Private Vault Credentials
@@ -101,3 +113,12 @@ Run the integration test suite to verify server endpoints, media streaming, fold
 ```bash
 python tests/test_server_api.py
 ```
+
+---
+
+## 👨‍💻 Developer
+<div align="center">
+  <p><strong>Developed By: Er. Santosh Thakur</strong></p>
+  <p>Contact No.: +977-9804743283 &nbsp;•&nbsp; Mail Id.: info@santoshthakur.info.np</p>
+  <p>Website: <a href="https://www.santoshthakur.info.np">www.santoshthakur.info.np</a></p>
+</div>
